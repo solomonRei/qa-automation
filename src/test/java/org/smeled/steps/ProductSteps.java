@@ -8,6 +8,7 @@ import org.smeled.pages.CartPage;
 import org.smeled.pages.ProductPage;
 
 import static org.junit.Assert.assertTrue;
+import static org.smeled.driver.WebDriverFactory.getDriver;
 
 public class ProductSteps {
     private final WebDriver driver;
@@ -16,7 +17,7 @@ public class ProductSteps {
     private String productName;
 
     public ProductSteps() {
-        this.driver = Hooks.getDriver();
+        this.driver = getDriver();
         productPage = new ProductPage(driver);
         cartPage = new CartPage(driver);
     }
@@ -28,13 +29,14 @@ public class ProductSteps {
         productName = productPage.getProductName();
     }
 
-    @When("the user adds a {string} to the cart")
-    public void addToCart(String product) {
+    @When("the user adds a laptop to the cart")
+    public void addToCart() {
         productPage.clickAddToCartButton();
     }
 
     @Then("the cart should contain the added product")
     public void verifyProductInCart() {
+        System.out.println(productName);
         assertTrue("The cart should contain the added product", cartPage.isProductAddedToCart(productName));
     }
 }

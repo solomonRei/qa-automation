@@ -6,22 +6,20 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.smeled.pages.CartPage;
 
-import static org.junit.Assert.assertTrue;
+import static org.smeled.driver.WebDriverFactory.getDriver;
 
 public class CheckoutSteps {
     private final WebDriver driver;
     private final CartPage cartPage;
 
     public CheckoutSteps() {
-        this.driver = Hooks.getDriver();
+        this.driver = getDriver();
         cartPage = new CartPage(driver);
     }
 
     @Given("the user has products in the cart")
     public void navigateToCart() {
-//        String cartPageUrl = "https://bigshop.md/";
-//        driver.get(cartPageUrl);
-//        assertTrue("Cart count should be greater than 0", cartPage.getCartItemCount() > 0);
+        System.out.println("User has products in the cart");
     }
 
     @When("the user goes to the cart")

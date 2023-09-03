@@ -13,7 +13,6 @@ public class CartPage {
 
     private final By productRowLocator = By.cssSelector(".cart_page tbody tr");
     private final By proceedToCheckoutButtonLocator = By.cssSelector(".checkout_btn a");
-    private final By cartCountLocator = By.cssSelector(".cart_count");
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
@@ -36,13 +35,5 @@ public class CartPage {
         WebElement proceedButton = wait.until(ExpectedConditions.visibilityOfElementLocated(proceedToCheckoutButtonLocator));
 
         proceedButton.click();
-    }
-
-    public int getCartItemCount() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        WebElement cartCountElement = wait.until(ExpectedConditions.visibilityOfElementLocated(cartCountLocator));
-        String cartCountText = cartCountElement.getText().trim();
-        System.out.println(cartCountText);
-        return cartCountText.isEmpty() ? 0 : Integer.parseInt(cartCountText);
     }
 }

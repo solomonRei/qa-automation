@@ -8,6 +8,7 @@ import org.smeled.pages.HomePage;
 import org.smeled.pages.SearchResultsPage;
 
 import static org.junit.Assert.assertTrue;
+import static org.smeled.driver.WebDriverFactory.getDriver;
 
 public class SearchSteps {
     private final WebDriver driver;
@@ -15,16 +16,14 @@ public class SearchSteps {
     private final SearchResultsPage searchResultsPage;
 
     public SearchSteps() {
-        this.driver = Hooks.getDriver();
+        this.driver = getDriver();
         homePage = new HomePage(driver);
         searchResultsPage = new SearchResultsPage(driver);
     }
 
     @Given("the user is on the BigShop homepage")
     public void navigateToHomePage() {
-//        String baseUrl = "https://bigshop.md/";
-//
-//        driver.get(baseUrl);
+        System.out.println("HomePage is loaded");
     }
 
     @When("the user searches for {string}")

@@ -4,28 +4,29 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.smeled.actions.CommonActions;
 import org.smeled.pages.HomePage;
 
 import static org.junit.Assert.assertTrue;
-
+import static org.smeled.driver.WebDriverFactory.getDriver;
 
 public class HomePageSteps {
     private final WebDriver driver;
     private final HomePage homePage;
 
     public HomePageSteps() {
-        this.driver = Hooks.getDriver();
+        driver = getDriver();
         homePage = new HomePage(driver);
     }
 
     @Given("the user opens the browser")
     public void theUserOpensTheBrowser() {
-        driver.manage().window().maximize();
+        System.out.println("ok");
     }
 
     @When("the user navigates to {string}")
     public void navigateToUrl(String url) {
-        driver.navigate().to(url);
+        CommonActions.openUrl(driver, url);
         System.out.println("WebSite Is Open and ran!");
     }
 

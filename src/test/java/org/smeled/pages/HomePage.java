@@ -2,6 +2,9 @@ package org.smeled.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.smeled.actions.CommonActions;
+
 
 public class HomePage {
     private final WebDriver driver;
@@ -18,10 +21,13 @@ public class HomePage {
     }
 
     public void enterSearchQuery(String query) {
-        driver.findElement(searchInputLocator).sendKeys(query);
+        WebElement searchInputButton = CommonActions.waitForElementToBeClickable(driver, searchInputLocator, 1);
+        searchInputButton.sendKeys(query);
     }
 
     public void clickSearchButton() {
-        driver.findElement(searchButtonLocator).click();
+        WebElement searchButton = CommonActions.waitForElementToBeClickable(driver, searchButtonLocator, 3);
+        searchButton.click();
     }
+
 }
